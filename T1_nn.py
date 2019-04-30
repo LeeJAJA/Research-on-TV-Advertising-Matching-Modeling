@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pandas as pd
@@ -5,12 +8,14 @@ from keras.models import Sequential
 from keras.layers import Dense,Activation
 from keras.optimizers import SGD
 from sklearn.preprocessing import MultiLabelBinarizer
+import pickle
+import os
 from keras.utils.vis_utils import plot_model
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
 
-data = pd.read_csv("Artificial_Data.csv")
+data = pd.read_csv("T1_Artificial_Data.csv")
 Y = data.values[:,7:8]
 X = data.values[:,1:7]
 
@@ -19,12 +24,18 @@ X_mlb.fit(X)
 X = X_mlb.transform(X)
 print(X_mlb.classes_)
 #print(X[:5,:])
+f = open("./model/T1_X_mlb", "wb")
+f.write(pickle.dumps(X_mlb))
+f.close()
 
 Y_mlb = MultiLabelBinarizer()
 Y_mlb.fit(Y)
 Y = Y_mlb.transform(Y)
 print(Y_mlb.classes_)
 #print(Y[:5,:])
+f = open("./model/T1_Y_mlb", "wb")
+f.write(pickle.dumps(Y_mlb))
+f.close()
 
 X_df = pd.DataFrame(X)
 Y_df = pd.DataFrame(Y)
@@ -78,3 +89,5 @@ for i in range(idxs.shape[0]):
     for j in range(idxs.shape[1]):
         print(Y_mlb.classes_[idxs[i][j]], ":",np.around(prob[i][idxs[i][j]]*100,4),end="% ")
     print("\n")
+
+model.save("./model/Task_1.hdf5")
