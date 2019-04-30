@@ -16,9 +16,15 @@ import tensorflow as tf
 
 
 <<<<<<< HEAD:T1_nn.py
+<<<<<<< HEAD:T1_nn.py
 data = pd.read_csv("T1_Artificial_Data.csv")
 Y = data.values[:,7:8]
 X = data.values[:,1:7]
+=======
+data = pd.read_csv("sample.csv")
+X = data.values[:,1:3]
+Y = data.values[:,4:9]
+>>>>>>> parent of 19c82bd... update:nn.py
 =======
 data = pd.read_csv("sample.csv")
 X = data.values[:,1:3]
@@ -89,6 +95,7 @@ prob = model.predict(X_test.head(500))
 idxs = np.argsort(-prob)[:10,:5]
 
 <<<<<<< HEAD:T1_nn.py
+<<<<<<< HEAD:T1_nn.py
 X_test = np.array(X_test)
 #print(X_test.shape[1])
 #print(len(X_mlb.classes_))
@@ -100,6 +107,10 @@ for i in range(idxs.shape[0]):
     print("\n")
 
 model.save("./model/Task_1.hdf5")
+=======
+for (i, j) in enumerate(idxs):
+    print(Y_mlb.classes_[j], ":",prob[i][j] * 100,"\n")
+>>>>>>> parent of 19c82bd... update:nn.py
 =======
 for (i, j) in enumerate(idxs):
     print(Y_mlb.classes_[j], ":",prob[i][j] * 100,"\n")
