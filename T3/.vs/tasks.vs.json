@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "任务-第三问可交程序",
+      "appliesTo": "第三问可交程序.cpp",
+      "type": "launch"
+    },
+    {
+      "taskName": "任务-第三问可交程序",
+      "appliesTo": "第三问可交程序.cpp",
+      "type": "launch"
+    }
+  ]
+}
